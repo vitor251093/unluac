@@ -45,10 +45,7 @@ jobs:
 
       - name: Create Native Binary
         run: |
-          native-image ^
-            -jar bin/unluac.jar ^
-            -H:Name=unluac ^
-            -H:Class=unluac.Main
+          native-image -jar bin/unluac.jar -H:Name=unluac -H:Class=unluac.Main
 
       - name: Upload Native Binary
         uses: actions/upload-artifact@v3
