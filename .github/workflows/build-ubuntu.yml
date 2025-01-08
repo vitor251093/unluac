@@ -1,4 +1,4 @@
-name: Build Native Binary with GraalVM
+name: Build unluac (Ubuntu)
 
 on:
   push:

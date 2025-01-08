@@ -1,0 +1,57 @@
+name: Build unluac (Windows)
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-native-image:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java with GraalVM
+      - name: Set up GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '17'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 3: Install Native Image
+      - name: Install Native Image
+        run: gu install native-image
+
+      # Step 4: Compile Java source files
+      - name: Compile Java Source Files
+        run: |
+          mkdir build
+          javac -deprecation -Werror -d build -sourcepath src  src/unluac/*.java
+
+      # Step 5: Create JAR File
+      - name: Create JAR File
+        run: |
+          mkdir bin
+          jar -cfm bin/unluac.jar src/unluac/Manifest.mf -C build .
+
+      # Step 6: Generate Native Binary
+      - name: Create Native Binary
+        run: |
+          native-image ^
+            -jar bin/unluac.jar ^
+            -H:Name=unluac ^
+            -H:Class=unluac.Main
+
+      # Step 7: Upload Native Binary Artifact
+      - name: Upload Native Binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: unluac
+          path: ./unluac.exe
