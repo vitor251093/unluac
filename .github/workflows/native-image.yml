@@ -3,10 +3,10 @@ name: Build Native Binary with GraalVM
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build-native-image:
