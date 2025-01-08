@@ -46,12 +46,12 @@ jobs:
         run: |
           native-image \
             -jar bin/unluac.jar \
-            -H:Name=native-binary \
-            -H:Class=your.main.ClassName # Replace with your main class
+            -H:Name=unluac \
+            -H:Class=unluac.Main
 
       # Step 7: Upload Native Binary Artifact
       - name: Upload Native Binary
         uses: actions/upload-artifact@v3
         with:
-          name: native-binary
-          path: ./native-binary
+          name: unluac
+          path: ./unluac
