@@ -22,7 +22,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: graalvm
-          java-version: '20' # Replace with your desired Java version
+          java-version: 11
+          cache: 'none'
 
       # Step 3: Install Native Image
       - name: Install Native Image
