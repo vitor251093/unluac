@@ -50,5 +50,5 @@ jobs:
       - name: Upload Native Binary
         uses: actions/upload-artifact@v3
         with:
-          name: unluac
+          name: unluac-windows-x64
           path: ./unluac.exe
