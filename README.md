@@ -1,4 +1,9 @@
-# unluac - LUA 5.x decompiler
+<div align="center">
+  <img src="res/recap_unluac.png" alt="recap-unluac logo" width="256" />
+</div>
+
+<h1 align="center">unluac - LUA 5.x decompiler</h1>
+<p align="center">A simple tool for decompile LUA (.lua) files</p>
 
 `unluac` is a decompiler for Lua 5.1. It runs on Lua chunks that have been compiled with the standard Lua compiler. It requires that debugging information has not been stripped from the chunk. (By default, the Lua compiler includes this debugging information.)
 
@@ -6,8 +11,8 @@ This program is written in Java. A JAR package is available in the downloads sec
 
 Here is an example usage of unluac:
 
-```
-java -jar unluac.jar myfile.lua > myfile_decompiled.lua
+```bash
+unluac.exe myfile.lua > myfile_decompiled.lua
 ```
 
 ## How to compile `unluac` from source
